@@ -1,0 +1,164 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "API Documentation",
+		"description": "API Berita CRUDCRUD adalah sebuah layanan RESTful yang memungkinkan pengguna untuk mengakses, membuat, memperbarui, dan menghapus entri berita. Dengan API ini, pengembang dapat dengan mudah mengintegrasikan layanan berita ke dalam aplikasi mereka, baik itu situs web, aplikasi seluler, atau platform lainnya. API ini menyediakan akses ke operasi dasar \"Create,\" \"Read,\" \"Update,\" dan \"Delete,\" sehingga pengguna dapat mengelola dan menampilkan berita dengan mudah.",
+		"version": "1.0.0",
+		"license": { "name": "Apache 2.0", "url": "http://www.apache.org/licenses/LICENSE-2.0.html" }
+	},
+	"host": "crudcrud.com",
+	"basePath": "/api/dda7dd646b5e4bc1aeeaa8b0e498356a",
+	"tags": [
+		{
+			"name": "User",
+			"description": "API Pengguna"
+		}
+	],
+	"schemes": ["https"],
+	"paths": {
+		"/users": {
+			"get": {
+				"tags": ["User"],
+				"summary": "Daftar data pengguna",
+				"description": "Daftar data pengguna",
+				"operationId": "getUsers",
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					},
+					"400": {
+						"description": "Kesalahan"
+					}
+				}
+			},
+			"post": {
+				"tags": ["User"],
+				"summary": "Add data pengguna",
+				"description": "add data pengguna ",
+				"operationId": "addUser",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "User",
+						"in": "body",
+						"description": "Data pengguna",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Data pengguna berhasil ditambahkan",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			}
+		},
+		"/users/{_id}": {
+			"get": {
+				"tags": ["User"],
+				"summary": "List Detail Pengguna",
+				"description": "Detail pengguna by id",
+				"operationId": "getUser",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"$ref": "#/parameters/IDParam"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				}
+			},
+			"put": {
+				"tags": ["User"],
+				"summary": "Update Pengguna",
+				"description": "Update pengguna by id",
+				"operationId": "updateUser",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"$ref": "#/parameters/IDParam"
+					},
+					{
+						"name": "User",
+						"in": "body",
+						"description": "Data pengguna",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Data pengguna berhasil diupdate"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["User"],
+				"summary": "Hapus data pengguna",
+				"description": "Hapus data pengguna by id",
+				"operationId": "deleteUser",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"$ref": "#/parameters/IDParam"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "data pengguna Berhasil dihapus"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"User": {
+			"type": "object",
+			"properties": {
+				"nama": {
+					"type": "string",
+					"example": "eli"
+				},
+				"alamat": {
+					"type": "string",
+					"example": "Malang"
+				},
+				"hobi": {
+					"type": "string",
+					"example": "membaca"
+				}
+			},
+			"required": ["nama", "alamat", "hobi"]
+		}
+	},
+	"parameters": {
+		"IDParam": {
+			"name": "_id",
+			"in": "path",
+			"description": "ID Data",
+			"required": true,
+			"type": "string",
+			"default": "5f7b1f6a9d7c5a0017a5e3a0"
+		}
+	}
+}
